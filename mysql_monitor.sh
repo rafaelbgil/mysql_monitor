@@ -21,7 +21,7 @@ case $1 in
                         mysql -S $SOCKET -u$USER_DB -p$PASSWORD_DB -e "show processlist" | grep -i Sleep | wc -l
                 ;;
                 -rs)
-                        STATUS=$(mysql -S $SOCKET -u$USER_DB -p$PASSWORD_DB -e "SHOW SLAVE STATUS \G" | grep -i Slave_SQL_Running | cut -f 2 -d ":" | sed "s/ *//g")
+                        STATUS=$(mysql -S $SOCKET -u$USER_DB -p$PASSWORD_DB -e "SHOW SLAVE STATUS \G" | grep -i Slave_SQL_Running: | cut -f 2 -d ":" | sed "s/ *//g")
 						if [ $( echo $STATUS | grep -i "Yes") ]; then
 							echo "0"
 						else
