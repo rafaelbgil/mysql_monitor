@@ -6,7 +6,7 @@ USER_DB=''
 PASSWORD_DB=''
 case $1 in
                 -q)
-                        mysql -S $SOCKET -u$USER_DB -p$PASSWORD_DB -e "show processlist" | grep -i query | wc -l
+                        mysql -S $SOCKET -u$USER_DB -p$PASSWORD_DB -e "show processlist" | grep -i query | grep -v "show processlist" | wc -l
                 ;;
                 -s)
                         mysql -S $SOCKET -u$USER_DB -p$PASSWORD_DB -e "show processlist" | grep -i sort | wc -l
